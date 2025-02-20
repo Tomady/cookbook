@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h3>cookbook project start!</h3>
+	<script>
+        location.href="http://localhost:8080/recipes";
+    </script>
 </body>
 </html>
