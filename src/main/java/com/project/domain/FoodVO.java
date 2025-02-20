@@ -3,6 +3,7 @@ package com.project.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Getter
@@ -14,7 +15,7 @@ public class FoodVO {
     private String description; // 설명
     private Long foodLevel; // 난이도
     private Long cookingtime;   // 조리시간
-    private LocalDateTime regDt;    // 등록일
-    private LocalDateTime updDt;    // 수정일
+    private Date regDt;    // 등록일
+    private Date modiDt;    // 수정일
     private String title;   // 타이틀
 }
