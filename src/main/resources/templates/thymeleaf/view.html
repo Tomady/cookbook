@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>우리의 식탁</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<style>
+		.recipe-card {
+		        background: #fff;
+		        border-radius: 10px;
+		        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		        padding: 15px;
+		        text-align: center; /* 텍스트와 이미지를 가운데로 정렬 */
+		        margin-bottom: 20px;
+		    }       
+	</style>
+</head>
+<body>
+    <div class="p-5 mb-5 text-center</> bg-light d-flex justify-content-center">
+        <h1 class="mb-3">우리의 식탁</h1>
+        <h4 class="mb-3">레시피</h4>
+        <button type="button" id="create-btn" class="btn btn-secondary btn-sm mb-3"
+                th:onclick="|location.href='@{/new-recipe}'|">
+            레시피 등록
+        </button>
+    </div>
+	<div th:each="recipe : ${recipes}" class="recipe-card">
+	    <img th:src="@{'/images/' + ${recipe.image}}" alt="레시피 이미지">
+	    <div class="recipe-description" th:text="${recipe.description}"></div>
+        <div class="recipe-foodNm" th:text="${recipe.foodNm}"></div>
+        <div class="recipe-info">
+	    <span th:text="'난이도 ' + ${recipe.foodLevel}">난이도</span>
+	    <span th:text="'소요시간 ' + ${recipe.cookingtime} + '분'">조리 시간</span>
+	    </div>
+	</div>
+		 <div style="text-align: center;">
+		     <img th:src="@{/images/{img}(img=${food_recipes.image})}" alt="음식 이미지">
+		     <p><span th:text="${food_recipes.description}"></span></p>
+		     <p><span th:text="${food_recipes.foodNm}"></span></p>
+			 <p>난이도 : <span th:text="${food_recipes.foodLevel}"></span> 소요시간 : <span th:text="${food_recipes.cookingtime}"></span>분</p>
+
+			 <hr>
+			 
+		     <table style="margin: 0 auto; border-collapse: collapse; border: 0;">
+		         <tr th:each="prod : ${ing_recipes}">
+		             <td th:text="${prod.ingredientNm}" style="border: 1px solid black; padding: 8px;">ingredientNm</td>
+		             <td th:text="${prod.amount}" style="border: 1px solid black; padding: 8px;">amount</td>
+		             <td th:text="${prod.ingType}" style="border: 1px solid black; padding: 8px;">ingType</td>
+		         </tr>
+		     </table>
+			 
+			 <hr>
+			 
+			 <table style="margin: 0 auto; border-collapse: collapse; border: 0;">
+			 	 <tr th:each="prod : ${step_recipes}">
+		             <td th:text="${prod.stepNum}" style="border: 1px solid black; padding: 8px;">stepNum</td>		           
+					 <td><img th:src="@{/images/{img}(img=${prod.stepImage})}" alt="음식 이미지" style="width: 200px; height: 150px;"></td>
+		             <td th:text="${prod.stepDescription}" style="border: 1px solid black; padding: 8px;">stepDescription</td>
+ 		         </tr>
+		    </table>
+		 </div>
+	    <p>
+	      <a href="../home.html" th:href="@{/}">Return to home</a>
+	    </p>
+
+</body>
+</html>
